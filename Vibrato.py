@@ -39,12 +39,21 @@ class Vibrato():
         with open('%s.mp4' % (vid),'wb') as fb:
             fb.write(videoBin.content)
         self.headers['user-agent'] = H0
-        return "下载完成"
+        return "下载完成！"
 
     def run(self, url):
         try:
             self.url = url
             vid,info,session = self.__get_real_url()
             return self.__download(vid, info, session)
+        except Exception as e:
+            raise e
+
+
+    def run(self, url, name):
+        try:
+            self.url = url
+            vid, info, session = self.__get_real_url()
+            return self.__download(name, info, session)
         except Exception as e:
             raise e
